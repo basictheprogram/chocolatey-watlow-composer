@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+  <metadata>
+    <id>cura-new</id>
+    <version>5.1.0</version>
+    <packageSourceUrl>https://github.com/basictheprogram/chocolatey-cura-new</packageSourceUrl>
+    <owners>basictheprogram</owners>
+    <title>cura (Install)</title>
+    <authors>David Braam, Ultimaker</authors>
+    <projectUrl>https://github.com/Ultimaker/Cura</projectUrl>
+    <iconUrl>https://basictheprogram.github.io/Cura/icons/cura-128.png</iconUrl>
+    <copyright>© 2011-2022 Ultimaker B.V.</copyright>
+    <licenseUrl>https://github.com/Ultimaker/Cura/blob/master/LICENSE</licenseUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <projectSourceUrl>https://github.com/Ultimaker/Cura/tree/5.1</projectSourceUrl>
+    <mailingListUrl>https://community.ultimaker.com</mailingListUrl>
+    <bugTrackerUrl>https://github.com/Ultimaker/Cura/issues</bugTrackerUrl>
+    <tags>cura 3d-print printer</tags>
+    <summary>Cura creates a seamless integration between hardware, software and
+      materials for the best 3D printing experience around.
+      Cura supports the 3MF, OBJ and STL file formats and is available on Windows,
+      Mac and Linux.
+    </summary>
+    <description>Ultimaker Cura prepares your model for 3D printing. For novices,
+      it makes it easy to get great results. For experts, there are over 200
+      settings to adjust to your needs. And integration with major software
+      platforms makes 3D printing even simpler.</description>
+    <releaseNotes>https://github.com/Ultimaker/Cura/releases/tag/5.1.0</releaseNotes>
+    <dependencies>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="tools\**" target="tools" />
+  </files>
+</package>
