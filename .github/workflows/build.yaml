@@ -12,7 +12,7 @@ on:    # yamllint disable-line rule:truthy
   workflow_dispatch:
 
 env:
-  CHOCO_PACKAGE_NAME: cura-new
+  CHOCO_PACKAGE_NAME: watlow-composer
   CHOCO_PUSH_URL: https://push.chocolatey.org/
   CHOCO_COMMUNITY_FEED: https://community.chocolatey.org/api/v2/
 
@@ -29,6 +29,8 @@ jobs:
         uses: crazy-max/ghaction-chocolatey@v1
         with:
           args: pack
+    name: Push
+    steps:
       -
         name: Set key
         run: |

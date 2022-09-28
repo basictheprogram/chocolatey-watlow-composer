@@ -3,7 +3,7 @@
 $packageArgs = @{
     packageName    = $env:ChocolateyPackageName
     fileType       = 'exe'
-    softwareName   = 'Ultimaker*'
+    softwareName   = 'Watlow COMPOSER*'
     silentArgs     = "/S"
     validExitCodes = @(0, 3010, 1605, 1614, 1641)
 }
