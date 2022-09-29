@@ -19,7 +19,7 @@ env:
 
 jobs:
   build_job:
-    runs-on: windows-2016
+    runs-on: windows-latest
     name: pack
     steps:
       - name: checkout
@@ -29,14 +29,14 @@ jobs:
         with:
           args: pack
   test_job:
-    runs-on: windows-2016
+    runs-on: windows-latest
     name: test
     steps:
       - name: install
         run: |
           choco install -dv --source ".;${{ env.CHOCO_COMMUNITY_FEED }}" ${{ env.CHOCO_PACKAGE_NAME }}
   deploy_job:
-    runs-on: windows-2016
+    runs-on: windows-latest
     name: push
     steps:
       - name: set key
