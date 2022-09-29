@@ -45,8 +45,10 @@ jobs:
           name: ${{ env.CHOCO_PACKAGE_NAME }}
       - name: Install
         run: |
-          choco install -dv --source ".;${{ env.CHOCO_COMMUNITY_FEED }}" ${{ env.CHOCO_PACKAGE_NAME }}
-          choco uninstall -dv ${{ env.CHOCO_PACKAGE_NAME }}
+          choco install --source ".;${{ env.CHOCO_COMMUNITY_FEED }}" ${{ env.CHOCO_PACKAGE_NAME }}
+      - name: Uninstall
+        run: |
+          choco uninstall ${{ env.CHOCO_PACKAGE_NAME }}
   deploy_job:
     name: Push
     needs: test_job
@@ -58,7 +60,7 @@ jobs:
           name: ${{ env.CHOCO_PACKAGE_NAME }}
       - name: Set key
         run: |
-          choco apikey --key ${{ secrets.CHOCO_API_KEY }} --source ${{ env.CHOCO_PUSH_URL }}
-      - name: push
+          choco apikey --key ${{ env.CHOCO_API_KEY }} --source ${{ env.CHOCO_PUSH_URL }}
+      - name: Push
         run: |
-          choco push --api-key ${{ secrets.CHOCO_API_KEY }} --source ${{env.CHOCO_PUSH_URL }} ${{ env.CHOCO_PACKAGE_NAME }}
+          choco push --api-key ${{ env.CHOCO_API_KEY }} --source ${{env.CHOCO_PUSH_URL }} ${{ env.CHOCO_PACKAGE_NAME }}
