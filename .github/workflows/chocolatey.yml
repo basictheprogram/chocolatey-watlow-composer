@@ -5,11 +5,10 @@ name: Chocolatey Package
 #
 on:    # yamllint disable-line rule:truthy
   push:
-    branches: ["main"]
+    branches: [main]
   pull_request:
-    branches: ["main"]
+    branches: [main]
 
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 env:
@@ -22,9 +21,11 @@ jobs:
     runs-on: windows-2016
     name: pack
     steps:
-      - name: checkout
+      -
+        name: checkout
         uses: actions/checkout@v3
-      - name: pack
+      -
+        name: pack
         uses: crazy-max/ghaction-chocolatey@v2
         with:
           args: pack
@@ -32,16 +33,19 @@ jobs:
     runs-on: windows-2016
     name: test
     steps:
-      - name: install
+      -
+        name: install
         run: |
           choco install -dv --source ".;${{ env.CHOCO_COMMUNITY_FEED }}" ${{ env.CHOCO_PACKAGE_NAME }}
   deploy_job:
     runs-on: windows-2016
     name: push
     steps:
-      - name: set key
+      -
+        name: set key
         run: |
           choco apikey --key ${{ secrets.CHOCO_API_KEY }} --source ${{ env.CHOCO_PUSH_URL }}
-      - name: push
+      -
+        name: push
         run: |
           choco push --api-key ${{ secrets.CHOCO_API_KEY }} --source ${{env.CHOCO_PUSH_URL }}
