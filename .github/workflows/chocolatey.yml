@@ -60,7 +60,7 @@ jobs:
           name: ${{ env.CHOCO_PACKAGE_NAME }}
       - name: Set key
         run: |
-          choco apikey --key ${{ env.CHOCO_API_KEY }} --source ${{ env.CHOCO_PUSH_URL }}
+          choco apikey --key ${{ secrets.CHOCO_API_KEY }} --source ${{ env.CHOCO_PUSH_URL }}
       - name: Push
         run: |
-          choco push --api-key ${{ env.CHOCO_API_KEY }} --source ${{env.CHOCO_PUSH_URL }} ${{ env.CHOCO_PACKAGE_NAME }}
+          choco push --api-key ${{ secrets.CHOCO_API_KEY }} --source ${{env.CHOCO_PUSH_URL }} ${{ env.CHOCO_PACKAGE_NAME }}
