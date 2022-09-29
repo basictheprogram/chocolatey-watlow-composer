@@ -4,6 +4,9 @@ $data = & (Join-Path -Path (Split-Path -Path $MyInvocation.MyCommand.Path) -Chil
 $WorkSpace = Join-Path $env:TEMP $env:ChocolateyPackageName
 $toolsDir = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
 
+$composer = Join-Path $toolsDir 'Watlow_COMPOSER.cer'
+Import-Certificate -FilePath $composer -CertStoreLocation Cert:\LocalMachine\TrustedPublisher
+
 $packageArgs = @{
     packageName    = $env:ChocolateyPackageName
     unzipLocation  = $toolsDir
