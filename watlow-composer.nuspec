@@ -10,8 +10,7 @@
     <projectUrl>https://www.watlow.com/composer.cfm</projectUrl>
     <iconUrl>https://basictheprogram.github.io/chocolatey-watlow-composer/icons/watlow-composer_128.png</iconUrl>
     <copyright>© 2022 Watlow Electric Manufacturing Company</copyright>
-    <licenseUrl>Use of COMPOSER software is subject to the end-user license agreement displayed upon installation.</licenseUrl>
-    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <tags>controllers F4T D4T EZ-ZONE® RM EZ-ZONE PM </tags>
     <summary>COMPOSER® is Watlow’s new, easy-to-use software for configuring and
      customizing controllers.
@@ -29,3 +28,4 @@
     <file src="tools\**" target="tools" />
   </files>
 </package>
+

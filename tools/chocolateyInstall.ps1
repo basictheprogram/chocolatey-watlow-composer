@@ -8,8 +8,8 @@ $packageArgs = @{
     packageName    = $env:ChocolateyPackageName
     unzipLocation  = $toolsDir
     fileType       = 'exe'
-    silentArgs     = '/S'
-    softwareName   = 'Ultimaker'
+    silentArgs     = '/exenoui /exenoupdates /passive /norestart'
+    softwareName   = 'Watlow COMPOSER'
     validExitCodes = @(0, 3010, 1641)
 
     url            = $data.url
