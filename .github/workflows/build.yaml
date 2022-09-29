@@ -17,31 +17,35 @@ env:
   CHOCO_COMMUNITY_FEED: https://community.chocolatey.org/api/v2/
 
 jobs:
-  build:
+  build_job:
     runs-on: windows-2016
-    name: Pack
+    name: pack
     steps:
       -
-        name: Checkout
+        name: checkout
         uses: actions/checkout@v3
       -
-        name: Pack
+        name: pack
         uses: crazy-max/ghaction-chocolatey@v2
         with:
           args: pack
-  push:
+  test_job:
     runs-on: windows-2016
-    name: Push
+    name: test
     steps:
       -
-        name: Set key
+        name: install
+        run: |
+          choco install -dv --source ".;${{ env.CHOCO_COMMUNITY_FEED }}" ${{ env.CHOCO_PACKAGE_NAME }}
+  deploy_job:
+    runs-on: windows-2016
+    name: push
+    steps:
+      -
+        name: set key
         run: |
           choco apikey --key ${{ secrets.CHOCO_API_KEY }} --source ${{ env.CHOCO_PUSH_URL }}
       -
-        name: Install
-        run: |
-          choco install -dv --source ".;${{ env.CHOCO_COMMUNITY_FEED }}" ${{ env.CHOCO_PACKAGE_NAME }}
-      -
-        name: Push
+        name: push
         run: |
           choco push --api-key ${{ secrets.CHOCO_API_KEY }} --source ${{env.CHOCO_PUSH_URL }}
