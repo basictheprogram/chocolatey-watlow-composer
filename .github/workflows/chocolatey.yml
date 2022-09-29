@@ -5,10 +5,11 @@ name: Chocolatey Package
 #
 on:    # yamllint disable-line rule:truthy
   push:
-    branches: [main]
+    branches: ["main"]
   pull_request:
-    branches: [main]
+    branches: ["main"]
 
+  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 env:
@@ -18,34 +19,46 @@ env:
 
 jobs:
   build_job:
-    runs-on: windows-2016
-    name: pack
+    name: Pack
+    runs-on: windows-latest
     steps:
-      -
-        name: checkout
+      - name: Checkout
         uses: actions/checkout@v3
-      -
-        name: pack
+      - name: pack
         uses: crazy-max/ghaction-chocolatey@v2
         with:
           args: pack
+      - name: Upload package
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ env.CHOCO_PACKAGE_NAME }}
+          path: |
+            *.nupkg
   test_job:
-    runs-on: windows-2016
     name: test
+    needs: build_job
+    runs-on: windows-latest
     steps:
-      -
-        name: install
+      - name: Download packagae
+        uses: actions/download-artifact@v3
+        with:
+          name: ${{ env.CHOCO_PACKAGE_NAME }}
+      - name: Install
         run: |
           choco install -dv --source ".;${{ env.CHOCO_COMMUNITY_FEED }}" ${{ env.CHOCO_PACKAGE_NAME }}
+          choco uninstall -dv ${{ env.CHOCO_PACKAGE_NAME }}
   deploy_job:
-    runs-on: windows-2016
-    name: push
+    name: Push
+    needs: test_job
+    runs-on: windows-latest
     steps:
-      -
-        name: set key
+      - name: Download packagae
+        uses: actions/download-artifact@v3
+        with:
+          name: ${{ env.CHOCO_PACKAGE_NAME }}
+      - name: Set key
         run: |
           choco apikey --key ${{ secrets.CHOCO_API_KEY }} --source ${{ env.CHOCO_PUSH_URL }}
-      -
-        name: push
+      - name: push
         run: |
-          choco push --api-key ${{ secrets.CHOCO_API_KEY }} --source ${{env.CHOCO_PUSH_URL }}
+          choco push --api-key ${{ secrets.CHOCO_API_KEY }} --source ${{env.CHOCO_PUSH_URL }} ${{ env.CHOCO_PACKAGE_NAME }}
