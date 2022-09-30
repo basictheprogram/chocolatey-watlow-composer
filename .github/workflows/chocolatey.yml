@@ -54,7 +54,7 @@ jobs:
     needs: test_job
     runs-on: windows-latest
     steps:
-      - name: Download packagae
+      - name: Download package
         uses: actions/download-artifact@v3
         with:
           name: ${{ env.CHOCO_PACKAGE_NAME }}

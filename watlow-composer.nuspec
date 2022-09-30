@@ -4,7 +4,7 @@
     <id>watlow-composer</id>
     <version>3.14.34</version>
     <packageSourceUrl>https://github.com/basictheprogram/chocolatey-watlow-composer</packageSourceUrl>
-    <owners>basictheprogram tannerrj</owners>
+    <owners>basictheprogram,tannerrj</owners>
     <title>Watlow's COMPOSER</title>
     <authors>Watlow Electric Manufacturing Company</authors>
     <iconUrl>https://basictheprogram.github.io/chocolatey-watlow-composer/icons/watlow-composer_128.png</iconUrl>
