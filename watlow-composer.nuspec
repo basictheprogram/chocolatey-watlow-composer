@@ -10,7 +10,6 @@
     <iconUrl>https://basictheprogram.github.io/chocolatey-watlow-composer/icons/watlow-composer_128.png</iconUrl>
     <copyright>© 2022 Watlow Electric Manufacturing Company</copyright>
     <projectSourceUrl>https://www.watlow.com/composer.cfm</projectSourceUrl>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <licenseUrl>https://github.com/basictheprogram/chocolatey-watlow-composer/EULA</licenseUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <releaseNotes>https://www.watlow.com/resources-and-support/technical-library/software-and-demos</releaseNotes>
