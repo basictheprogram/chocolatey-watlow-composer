@@ -24,7 +24,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: pack
+      - name: Pack
         uses: crazy-max/ghaction-chocolatey@v2
         with:
           args: pack
@@ -35,7 +35,7 @@ jobs:
           path: |
             *.nupkg
   test_job:
-    name: test
+    name: Test
     needs: build_job
     runs-on: windows-latest
     steps:
