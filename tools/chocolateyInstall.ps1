@@ -4,8 +4,14 @@ $data = & (Join-Path -Path (Split-Path -Path $MyInvocation.MyCommand.Path) -Chil
 $WorkSpace = Join-Path $env:TEMP $env:ChocolateyPackageName
 $toolsDir = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
 
+. $toolsDir\helpers.ps1
+
 $composer = Join-Path $toolsDir 'Watlow_COMPOSER.cer'
-Import-Certificate -FilePath $composer -CertStoreLocation Cert:\LocalMachine\TrustedPublisher
+
+$cert = Get-ChildItem Cert:\CurrentUser\TrustedPublisher -Recurse | Where-Object { $_.Thumbprint -eq 'a13918d0df7dc593b7967b7bc28034fb2e66bf18' }
+if (!$cert) {
+    Start-ChocolateyProcessAsAdmin "certutil -addstore 'TrustedPublisher' '$composer'"
+}
 
 $packageArgs = @{
     packageName    = $env:ChocolateyPackageName
